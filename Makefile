@@ -7,7 +7,7 @@
 # Project basic setting
 project_name           ?= apisix-workbench
 project_version        ?= 1.0.1
-project_compose        ?= pod/docker-compose.yml
+project_compose        ?= ci/pod/docker-compose.yml
 project_launch_utc     ?= $(shell date +%Y%m%d%H%M%S)
 project_release_folder ?= release
 project_release_name   ?= $(project_release_folder)/$(project_name)_release.v$(project_version).$(project_launch_utc).tar.gz
@@ -121,3 +121,22 @@ vm-down:
 	@$(call func_echo_status, "$@ -> [ Start ]")
 	$(ENV_VAGRANT) destroy -f
 	@$(call func_echo_success_status, "$@ -> [ Done ]")
+
+
+### container
+### ci-env-up : launch ci env
+.PHONY: ci-env-up
+ci-env-up:
+	$(ENV_DOCKER_COMPOSE) up -d
+
+
+### ci-env-ps : ci env ps
+.PHONY: ci-env-ps
+ci-env-ps:
+	$(ENV_DOCKER_COMPOSE) ps
+
+
+### ci-env-down : destroy ci env
+.PHONY: ci-env-down
+ci-env-down:
+	$(ENV_DOCKER_COMPOSE) down

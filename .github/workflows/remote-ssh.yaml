@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branch:
+      - test
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - ubuntu-18.04
+        os_name:
+          - linux_ubuntu_1804
+
+    runs-on: ${{ matrix.platform }}
+    env:
+      SERVER_NAME: ${{ matrix.os_name }}
+
+    steps:
+      - name: list system status
+        shell: bash
+        run: |
+          docker version
+          docker-compose version
