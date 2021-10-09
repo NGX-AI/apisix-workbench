@@ -127,16 +127,30 @@ vm-down:
 ### ci-env-up : launch ci env
 .PHONY: ci-env-up
 ci-env-up:
+	@$(call func_echo_status, "$@ -> [ Start ]")
 	$(ENV_DOCKER_COMPOSE) up -d
+	@$(call func_echo_success_status, "$@ -> [ Done ]")
 
 
 ### ci-env-ps : ci env ps
 .PHONY: ci-env-ps
 ci-env-ps:
+	@$(call func_echo_status, "$@ -> [ Start ]")
 	$(ENV_DOCKER_COMPOSE) ps
+	@$(call func_echo_success_status, "$@ -> [ Done ]")
+
+
+### ci-env-rebuild : ci env image rebuild
+.PHONY: ci-env-rebuild
+ci-env-rebuild:
+	@$(call func_echo_status, "$@ -> [ Start ]")
+	$(ENV_DOCKER_COMPOSE) build
+	@$(call func_echo_success_status, "$@ -> [ Done ]")
 
 
 ### ci-env-down : destroy ci env
 .PHONY: ci-env-down
 ci-env-down:
+	@$(call func_echo_status, "$@ -> [ Start ]")
 	$(ENV_DOCKER_COMPOSE) down
+	@$(call func_echo_success_status, "$@ -> [ Done ]")

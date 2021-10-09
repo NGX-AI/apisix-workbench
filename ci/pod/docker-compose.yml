@@ -55,6 +55,9 @@ services:
     restart: unless-stopped
     ports:
       - "9092:9092"
+    depends_on:
+      - zookeeper-server1
+      - zookeeper-server2
     networks:
       kafka_net:
 
@@ -67,6 +70,9 @@ services:
     restart: unless-stopped
     ports:
       - "19092:9092"
+    depends_on:
+      - zookeeper-server1
+      - zookeeper-server2
     networks:
       kafka_net:
 
@@ -176,7 +182,9 @@ services:
 
   ### Nacos services
   nacos-service1:
-    image: nacos-test-service:1.0-SNAPSHOT
+    build:
+      context: ci/pod/nacos/service
+      dockerfile: Dockerfile
     env_file:
       - ci/pod/nacos/env/service.env
     environment:
@@ -191,7 +199,9 @@ services:
       nacos_net:
 
   nacos-service2:
-    image: nacos-test-service:1.0-SNAPSHOT
+    build:
+      context: ci/pod/nacos/service
+      dockerfile: Dockerfile
     env_file:
       - ci/pod/nacos/env/service.env
     environment:
@@ -206,7 +216,9 @@ services:
       nacos_net:
 
   nacos-service3:
-    image: nacos-test-service:1.0-SNAPSHOT
+    build:
+      context: ci/pod/nacos/service
+      dockerfile: Dockerfile
     env_file:
       - ci/pod/nacos/env/service.env
     environment:
@@ -222,7 +234,9 @@ services:
       nacos_net:
 
   nacos-service4:
-    image: nacos-test-service:1.0-SNAPSHOT
+    build:
+      context: ci/pod/nacos/service
+      dockerfile: Dockerfile
     env_file:
       - ci/pod/nacos/env/service.env
     environment:
@@ -238,7 +252,9 @@ services:
       nacos_net:
 
   nacos-service5:
-    image: nacos-test-service:1.0-SNAPSHOT
+    build:
+      context: ci/pod/nacos/service
+      dockerfile: Dockerfile
     env_file:
       - ci/pod/nacos/env/service.env
     environment:
@@ -255,7 +271,9 @@ services:
       nacos_net:
 
   nacos-service6:
-    image: nacos-test-service:1.0-SNAPSHOT
+    build:
+      context: ci/pod/nacos/service
+      dockerfile: Dockerfile
     env_file:
       - ci/pod/nacos/env/service.env
     environment:
@@ -272,7 +290,9 @@ services:
       nacos_net:
 
   nacos-service7:
-    image: nacos-test-service:1.0-SNAPSHOT
+    build:
+      context: ci/pod/nacos/service
+      dockerfile: Dockerfile
     env_file:
       - ci/pod/nacos/env/service.env
     environment:

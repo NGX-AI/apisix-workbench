@@ -4,8 +4,6 @@
 # nacos server healthcheck
 REQ_STATUS=$(curl -s -o /dev/null -w '%{http_code}' "${CHECK_URI}")
 
-if [ "${REQ_STATUS}" -eq "200" ]; then
-  exit 0;
-else
+if [ "${REQ_STATUS}" -ne "200" ]; then
   exit 1;
 fi
