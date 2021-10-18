@@ -107,6 +107,12 @@ ssh:
 	@$(call func_echo_success_status, "$@ -> [ Done ]")
 
 
+### ssh-info: vagrant ssh-info
+.PHONY: ssh-info
+ssh-info:
+	$(ENV_VAGRANT) ssh-config
+
+
 ### sync : vagrant rsync
 .PHONY: sync
 sync:
